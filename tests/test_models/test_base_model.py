@@ -25,7 +25,7 @@ class Tests_BaseModel(unittest.TestCase):
         obj1 = BaseModel()
         origin = obj1.to_dict()
         obj1.save()
-        self.assertNotEqual(origin, obj1.to_dict)
+        self.assertNotEqual(origin, obj1.to_dict())
 
     def test_str_repr(self):
         obj1 = BaseModel()
