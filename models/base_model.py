@@ -6,7 +6,18 @@ import datetime
 
 
 class BaseModel:
+    """
+    BaseModel:
+
+    methods:
+        - __init__(self)
+        - __str__(self)
+        - save(self)
+        - to_dict(self)
+    """
     def __init__(self):
+        """initialize a new object of BaseModel
+        """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.datetime.now()
         self.updated_at = datetime.datetime.now()
