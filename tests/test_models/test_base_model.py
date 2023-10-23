@@ -20,6 +20,7 @@ class Tests_BaseModel(unittest.TestCase):
         obj2 = BaseModel()
         self.assertNotEqual(obj1.id, obj2.id)
         self.assertNotEqual(obj1.created_at, obj2.created_at)
+        self.assertNotEqual(obj1.to_dict, obj2.to_dict)
 
     def test_update_time(self):
         obj1 = BaseModel()
