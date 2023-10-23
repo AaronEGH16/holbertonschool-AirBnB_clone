@@ -14,7 +14,7 @@ class BaseModel:
     def __str__(self):
         """should print [<class name>] (<self.id>) <self.__dict__>
         """
-        print(f"[{type(self).__name__}] ({self.id}) {self.__dict__}")
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """updates the public instance attribute
