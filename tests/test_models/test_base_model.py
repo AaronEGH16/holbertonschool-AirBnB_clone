@@ -19,7 +19,7 @@ class Tests_BaseModel(unittest.TestCase):
     def test_unique_objects(self):
         obj1 = BaseModel()
         obj2 = BaseModel()
-        self.assertNotEqual(obj1.to_dict, obj2.to_dict)
+        self.assertNotEqual(obj1.to_dict(), obj2.to_dict())
 
     def test_update_time(self):
         obj1 = BaseModel()
