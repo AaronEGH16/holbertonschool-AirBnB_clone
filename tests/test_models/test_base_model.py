@@ -18,13 +18,13 @@ class Tests_BaseModel(unittest.TestCase):
     def test_unique_objects(self):
         obj1 = BaseModel()
         obj2 = BaseModel()
-        self.assertNotEqual(obj1.to_dict(), obj2.to_dict())
+        self.assertNotEqual(obj1.id, obj2.id)
+        self.assertNotEqual(obj1.created_at, obj2.created_at)
 
     def test_update_time(self):
         obj1 = BaseModel()
-        save_obj1 = obj1.to_dict()
         obj1.save()
-        self.assertNotEqual(obj1.to_dict, save_obj1)
+        self.assertNotEqual(obj1.updated_at, obj1.created_at)
 
     def test_type_returned(self):
         obj1 = BaseModel()
