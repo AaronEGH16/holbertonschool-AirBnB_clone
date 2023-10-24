@@ -24,3 +24,4 @@ class FileStorage():
             json.dump(serialized_objects, file)
 
     def reload(self):
+        pass
