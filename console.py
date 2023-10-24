@@ -19,7 +19,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, args):
         """Exit the program when user calls EOF"""
+        print()
         return True
+
+    def emptyline(self):
+        """This method ensures that the last cmd
+        is not repeated when a line is left blank."""
+        pass
 
 
 if __name__ == '__main__':
