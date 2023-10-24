@@ -4,7 +4,7 @@ this module contains all test of base_model
 """
 import unittest
 import uuid
-import datetime
+from datetime import datetime
 from models.base_model import BaseModel
 
 
@@ -15,6 +15,7 @@ class Tests_BaseModel(unittest.TestCase):
         - test update time
         - test str representation
         - test type returned
+        - test initialize BaseModel from kwargs
     """
     def test_unique_objects(self):
         obj1 = BaseModel()
@@ -25,7 +26,8 @@ class Tests_BaseModel(unittest.TestCase):
         obj1 = BaseModel()
         origin = obj1.to_dict()
         obj1.save()
-        self.assertNotEqual(origin, obj1.to_dict())
+        new = obj1.to_dict()
+        self.assertNotEqual(origin["updated_at"], new["updated_at"])
 
     def test_str_repr(self):
         obj1 = BaseModel()
@@ -36,3 +38,14 @@ class Tests_BaseModel(unittest.TestCase):
         obj1 = BaseModel()
         self.assertEqual(str, type(obj1.__str__()))
         self.assertEqual(dict, type(obj1.to_dict()))
+
+    def test_base_from_kwargs(self):
+        obj1 = BaseModel(id=1, created_at="2003-03-18T16:30:01.100000",
+                         updated_at="2003-03-18T16:30:01.100000")
+        answer = {
+            "__class__": type(obj1).__name__,
+            "id": 1,
+            "created_at": "2003-03-18T16:30:01.100000",
+            "updated_at": "2003-03-18T16:30:01.100000"
+        }
+        self.assertEqual(obj1.to_dict(), answer)
