@@ -2,6 +2,7 @@
 from queue import Empty
 from datetime import datetime
 import uuid
+from models.__init__ import storage
 """class BaseModel that defines all common attributes/methods for other classes
 """
 
