@@ -4,9 +4,8 @@ this module contains all test of file_storage
 """
 import unittest
 import os
-from datetime import datetime
-from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
 
 
 class Tests_FileStorage(unittest.TestCase):
