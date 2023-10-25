@@ -3,7 +3,7 @@
 using a dictionary representation
 """
 import json
-
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -11,22 +11,23 @@ class FileStorage():
     and deserializes JSON file to instances"""
     __file_path = "file.json"
     __objects = {}
+    objclass = {"BaseModel": BaseModel}
 
     def all(self):
         """Returns the __objects dictionary."""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """Adds an object to __objects with the key <class name>.id."""
         key = f"{obj.__class__.__name__}.{obj.id}"
-        FileStorage.__objects[key] = obj
+        self.__objects[key] = obj
 
     def save(self):
         """Serializes __objects to a JSON file at __file_path."""
         serialized_objects = {}
-        for key, obj in FileStorage.__objects.items():
+        for key, obj in self.__objects.items():
             serialized_objects[key] = obj.to_dict()
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
+        with open(self.__file_path, "w", encoding="utf-8") as file:
             json.dump(serialized_objects, file)
 
     def reload(self):
@@ -35,11 +36,10 @@ class FileStorage():
         do nothing. If the file doesn't exist,
         no exception should be raised)."""
         try:
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
+            with open(self.__file_path, "r", encoding="utf-8") as file:
                 data = json.load(file)
                 for key, val in data.items():
-                    obj = val["__class__"].__dict__.copy()
-                    obj.update(**val)
+                    obj = self.objclass[val["__class__"]](**val)
                     self.__objects[key] = obj
         except FileNotFoundError:
             pass
