@@ -38,7 +38,7 @@ class Tests_FileStorage(unittest.TestCase):
         self.storage.new(self.base_model)
         self.storage.save()
         obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
-        self.assertTrue(obj_key in self.storage.all())    
+        self.assertTrue(obj_key in self.storage.all())
 
     def test_reload(self):
         self.storage.new(self.base_model)
