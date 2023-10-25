@@ -50,5 +50,3 @@ class Tests_FileStorage(unittest.TestCase):
 
         obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
         self.assertTrue(obj_key in new_storage.all())
-
-
