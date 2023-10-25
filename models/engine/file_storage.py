@@ -24,12 +24,12 @@ class FileStorage():
             json.dump(serialized_objects, file)
 
     def reload(self):
-        if self.__file_path:
+        try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
                 data = json.load(file)
-                #for key, value in data.items():
-                    
-        else:
+                for key, val in data.items():
+                    obj = val["__class__"].__dict__.copy()
+                    obj.update(**val)
+                    self.__objects[key] = obj
+        except FileNotFoundError:
             pass
-        
-                        
