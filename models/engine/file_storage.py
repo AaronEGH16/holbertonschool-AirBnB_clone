@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""_summary_
+"""recreate a BaseModel from another one by
+using a dictionary representation
 """
 import json
-from queue import Empty
+from models.base_model import BaseModel
 
 
 class FileStorage():
