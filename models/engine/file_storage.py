@@ -24,4 +24,12 @@ class FileStorage():
             json.dump(serialized_objects, file)
 
     def reload(self):
-        pass
+        if self.__file_path:
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
+                data = json.load(file)
+                #for key, value in data.items():
+                    
+        else:
+            pass
+        
+                        
