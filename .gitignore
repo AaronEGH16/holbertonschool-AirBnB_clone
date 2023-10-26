@@ -1,3 +1,5 @@
 models/__pycache__/*.cpython-310.pyc
 models/engine/__pycache__/*.cpython-310.pyc
+tests/__pycache__/*.cpython-310.pyc
 tests/test_models/__pycache__/*.cpython-310.pyc
+tests/test_models/test_engine/__pycache__/*.cpython-310.pyc
