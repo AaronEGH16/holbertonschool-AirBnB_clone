@@ -41,11 +41,14 @@ class Tests_FileStorage(unittest.TestCase):
         self.assertTrue(obj_key in self.storage.all())
 
     def test_reload(self):
-        self.storage.new(self.base_model)
+        obj1 = BaseModel()
+        self.storage.new(obj1)
         self.storage.save()
 
         new_storage = FileStorage()
         new_storage.reload()
 
-        obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
+        obj_key = f"{obj1.__class__.__name__}.{obj1.id}"
+        all_obj = new_storage.all()
         self.assertTrue(obj_key in new_storage.all())
+        self.assertEqual(obj1.to_dict(), (all_obj[obj_key]).to_dict())
