@@ -42,13 +42,19 @@ class Tests_FileStorage(unittest.TestCase):
 
     def test_reload(self):
         obj1 = BaseModel()
-        self.storage.new(obj1)
-        self.storage.save()
+        obj2 = BaseModel()
+        obj3 = BaseModel()
 
         new_storage = FileStorage()
         new_storage.reload()
 
-        obj_key = f"{obj1.__class__.__name__}.{obj1.id}"
+        obj_key1 = f"{obj1.__class__.__name__}.{obj1.id}"
+        obj_key2 = f"{obj2.__class__.__name__}.{obj2.id}"
+        obj_key3 = f"{obj3.__class__.__name__}.{obj3.id}"
         all_obj = new_storage.all()
-        self.assertTrue(obj_key in new_storage.all())
-        self.assertEqual(obj1.to_dict(), (all_obj[obj_key]).to_dict())
+        self.assertTrue(obj_key1 in new_storage.all())
+        self.assertEqual(obj1.to_dict(), (all_obj[obj_key1]).to_dict())
+        self.assertTrue(obj_key2 in new_storage.all())
+        self.assertEqual(obj2.to_dict(), (all_obj[obj_key2]).to_dict())
+        self.assertTrue(obj_key3 in new_storage.all())
+        self.assertEqual(obj3.to_dict(), (all_obj[obj_key3]).to_dict())
