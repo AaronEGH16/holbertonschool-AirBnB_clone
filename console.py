@@ -101,16 +101,13 @@ class HBNBCommand(cmd.Cmd):
         if args[0]:
             args = args[0].split()
             obj_cls = args[0]
-            if obj_cls:
-                obj_class = models.FileStorage.objclass
-                if obj_cls in obj_class:
-                    for key, object in all_obj.items():
-                        if object.__class__.__name__ == obj_cls:
-                            print(all_obj[key])
-                else:
-                    print("** class doesn't exist **")
+            obj_class = models.FileStorage.objclass
+            if obj_cls in obj_class:
+                for key, object in all_obj.items():
+                    if object.__class__.__name__ == obj_cls:
+                        print(all_obj[key])
             else:
-                print("** class name missing **")
+                print("** class doesn't exist **")
         else:
             for key in all_obj.keys():
                 print(all_obj[key])
