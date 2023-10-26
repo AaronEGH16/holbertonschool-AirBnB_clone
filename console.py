@@ -12,6 +12,10 @@ class HBNBCommand(cmd.Cmd):
         - help (default)
         - quit (EXIT)
         - EOF (EXIT)
+        - create (new class object)
+        - show (show a class object)
+        - destroy (del a class object)
+        - all (print all instances of class)
     """
     prompt = "(hbnb)"
 
@@ -55,9 +59,9 @@ class HBNBCommand(cmd.Cmd):
             if obj_cls in obj_class:
                 if obj_id:
                     obj = (models.FileStorage()).all()
-                    if obj[f"{obj_cls}.{obj_id}"]:
+                    try:
                         print(obj[f"{obj_cls}.{obj_id}"])
-                    else:
+                    except:
                         print("** no instance found **")
                 else:
                     print("** instance id missing **")
@@ -77,10 +81,10 @@ class HBNBCommand(cmd.Cmd):
             if obj_cls in obj_class:
                 if obj_id:
                     obj = (models.FileStorage()).all()
-                    if obj[f"{obj_cls}.{obj_id}"]:
+                    try:
                         del obj[f"{obj_cls}.{obj_id}"]
                         models.storage.save()
-                    else:
+                    except:
                         print("** no instance found **")
                 else:
                     print("** instance id missing **")
@@ -88,6 +92,28 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
+    def do_all(self, *args):
+        """Prints all string representation of all
+        instances based or not on the class name
+        """
+        all_obj = (models.FileStorage()).all()
+        if args[0]:
+            args = args[0].split()
+            obj_cls = args[0]
+            if obj_cls:
+                obj_class = models.FileStorage.objclass
+                if obj_cls in obj_class:
+                    for key, object in all_obj.items():
+                        if object.__class__.__name__ == obj_cls:
+                            print(all_obj[key])
+                else:
+                    print("** class doesn't exist **")
+            else:
+                print("** class name missing **")
+        else:
+            for key in all_obj.keys():
+                print(all_obj[key])
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
