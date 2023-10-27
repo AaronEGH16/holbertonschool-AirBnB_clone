@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """this module contains user console of AirBnB proyect
 """
-from ctypes import cast
 from queue import Empty
 import models
 import cmd
