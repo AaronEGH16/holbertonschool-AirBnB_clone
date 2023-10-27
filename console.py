@@ -3,7 +3,6 @@
 """
 from ctypes import cast
 from queue import Empty
-from tkinter import E
 import models
 import cmd
 
