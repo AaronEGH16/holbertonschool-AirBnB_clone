@@ -32,13 +32,13 @@ class Tests_FileStorage(unittest.TestCase):
     def test_new(self):
         self.storage.new(self.base_model)
         obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
-        self.assertTrue(obj_key in self.storage.all())
+        self.assertIsNotNone((self.storage.all())[obj_key])
 
     def test_save(self):
         self.storage.new(self.base_model)
         self.storage.save()
         obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
-        self.assertTrue(obj_key in self.storage.all())
+        self.assertIsNotNone((self.storage.all())[obj_key])
 
     def test_reload(self):
         obj1 = BaseModel()
@@ -52,9 +52,9 @@ class Tests_FileStorage(unittest.TestCase):
         obj_key2 = f"{obj2.__class__.__name__}.{obj2.id}"
         obj_key3 = f"{obj3.__class__.__name__}.{obj3.id}"
         all_obj = new_storage.all()
-        self.assertTrue(obj_key1 in new_storage.all())
+        self.assertIsNotNone((self.storage.all())[obj_key1])
         self.assertEqual(obj1.to_dict(), (all_obj[obj_key1]).to_dict())
-        self.assertTrue(obj_key2 in new_storage.all())
+        self.assertIsNotNone((self.storage.all())[obj_key2])
         self.assertEqual(obj2.to_dict(), (all_obj[obj_key2]).to_dict())
-        self.assertTrue(obj_key3 in new_storage.all())
+        self.assertIsNotNone((self.storage.all())[obj_key3])
         self.assertEqual(obj3.to_dict(), (all_obj[obj_key3]).to_dict())
