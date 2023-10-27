@@ -3,6 +3,7 @@
 """
 from ctypes import cast
 from queue import Empty
+from tkinter import E
 import models
 import cmd
 
@@ -63,13 +64,13 @@ class HBNBCommand(cmd.Cmd):
                     obj = (models.FileStorage()).all()
                     try:
                         print(obj[f"{obj_cls}.{obj_id}"])
-                    except:
+                    except Exception:
                         print("** no instance found **")
-                except:
+                except Exception:
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-        except:
+        except Exception:
             print("** class name missing **")
 
     def do_destroy(self, *args):
@@ -86,13 +87,13 @@ class HBNBCommand(cmd.Cmd):
                     try:
                         del obj[f"{obj_cls}.{obj_id}"]
                         models.storage.save()
-                    except:
+                    except Exception:
                         print("** no instance found **")
-                except:
+                except Exception:
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-        except:
+        except Exception:
             print("** class name missing **")
 
     def do_all(self, *args):
@@ -136,18 +137,19 @@ class HBNBCommand(cmd.Cmd):
                                 val = val.strip('"')
                                 setattr(obj, att, val)
                                 obj.save()
-                            except:
+                            except Exception:
                                 print("** value missing **")
-                        except:
+                        except Exception:
                             print("** attribute name missing **")
-                    except:
+                    except Exception:
                         print("** no instance found **")
-                except:
+                except Exception:
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
