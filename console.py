@@ -119,8 +119,8 @@ class HBNBCommand(cmd.Cmd):
         name and id by adding or updating attribute
         ej: update <class name> <id> <attribute name> "<attribute value>"
         """
-        args = args[0].split()
         if args[0]:
+            args = args[0].split()
             obj_cls = args[0]
             class_dict = models.FileStorage.objclass
             if obj_cls in class_dict:
