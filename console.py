@@ -54,45 +54,45 @@ class HBNBCommand(cmd.Cmd):
         based on the class name and id
         """
         args = args[0].split()
-        obj_cls = args[0]
-        obj_id = args[1]
-        if obj_cls:
+        try:
+            obj_cls = args[0]
             class_dict = models.FileStorage.objclass
             if obj_cls in class_dict:
-                if obj_id:
+                try:
+                    obj_id = args[1]
                     obj = (models.FileStorage()).all()
                     try:
                         print(obj[f"{obj_cls}.{obj_id}"])
                     except:
                         print("** no instance found **")
-                else:
+                except:
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-        else:
+        except:
             print("** class name missing **")
 
     def do_destroy(self, *args):
         """Deletes an instance based on the class name and id
         """
         args = args[0].split()
-        obj_cls = args[0]
-        obj_id = args[1]
-        if obj_cls:
+        try:
+            obj_cls = args[0]
             class_dict = models.FileStorage.objclass
             if obj_cls in class_dict:
-                if obj_id:
+                try:
+                    obj_id = args[1]
                     obj = (models.FileStorage()).all()
                     try:
                         del obj[f"{obj_cls}.{obj_id}"]
                         models.storage.save()
                     except:
                         print("** no instance found **")
-                else:
+                except:
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
-        else:
+        except:
             print("** class name missing **")
 
     def do_all(self, *args):
@@ -124,23 +124,25 @@ class HBNBCommand(cmd.Cmd):
             obj_cls = args[0]
             class_dict = models.FileStorage.objclass
             if obj_cls in class_dict:
-                if args[1]:
+                try:
+                    id = args[1]
                     all_obj = (models.FileStorage()).all()
-                    if all_obj[f"{args[0]}.{args[1]}"]:
-                        if args[2]:
-                            if args[3]:
+                    try:
+                        obj = all_obj[f"{args[0]}.{id}"]
+                        try:
+                            att = args[2]
+                            try:
                                 val = args[3].strip("'")
                                 val = val.strip('"')
-                                obj = all_obj[f"{args[0]}.{args[1]}"]
-                                setattr(obj, args[2], val)
+                                setattr(obj, att, val)
                                 obj.save()
-                            else:
+                            except:
                                 print("** value missing **")
-                        else:
+                        except:
                             print("** attribute name missing **")
-                    else:
+                    except:
                         print("** no instance found **")
-                else:
+                except:
                     print("** instance id missing **")
             else:
                 print("** class doesn't exist **")
