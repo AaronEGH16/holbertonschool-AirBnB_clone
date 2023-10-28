@@ -5,7 +5,9 @@ from models.state import State
 from models.base_model import BaseModel
 
 class Tests_state(unittest.TestCase):
-    """_summary_
+    """test:
+            name its created
+            Sate inherit BaseModel
     """
     def test_state_attributes(self):
         state = State()
