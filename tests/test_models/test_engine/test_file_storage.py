@@ -6,6 +6,7 @@ import unittest
 import os
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class Tests_FileStorage(unittest.TestCase):
@@ -58,3 +59,11 @@ class Tests_FileStorage(unittest.TestCase):
         self.assertEqual(obj2.to_dict(), (all_obj[obj_key2]).to_dict())
         self.assertIsNotNone((self.storage.all())[obj_key3])
         self.assertEqual(obj3.to_dict(), (all_obj[obj_key3]).to_dict())
+
+
+    def test_save(self):
+        obj1 = BaseModel()
+        initial_updated_at = obj1.updated_at
+        obj1.save()
+        self.assertNotEqual(obj1.updated_at, initial_updated_at)
+
