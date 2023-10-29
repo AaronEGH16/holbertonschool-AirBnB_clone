@@ -38,15 +38,16 @@ Looking to learn:
 
 The command interpreter is used to create and manage instances of each program method (BaseModel, User, etc...)
 
-how to install?:
+how to use?:
 ```
-$git clone https://github.com/seba17962/holbertonschool-AirBnB_clone.git
-$cd holberton-AirBnB_clone
+$ git clone https://github.com/seba17962/holbertonschool-AirBnB_clone.git
+$ cd holberton-AirBnB_clone
+~/holberton-AirBnB_clone$ ./console
 ```
 
 Start the command interpreter as shown below:
 ```
-$./console.py
+~/holberton-AirBnB_clone$ ./console.py
 (hbnb)help
 
 Documented commands (type help <topic>):
@@ -60,7 +61,7 @@ $
 ```
 But also it can be started like this in non-interactive mode: (like the Shell project in C):
 ```
-$echo "help" | ./console.py
+~/holberton-AirBnB_clone$ echo "help" | ./console.py
 (hbnb)
 
 Documented commands (type help <topic>):
@@ -71,7 +72,7 @@ $
 $cat test_help
 help
 $
-$cat test_help | ./console.py
+~/holberton-AirBnB_clone$ cat test_help | ./console.py
 (hbnb)
 
 Documented commands (type help <topic>):
@@ -82,7 +83,7 @@ EOF  help  quit
 
 ## How to Use it with Examples:
 ```
-$./console.py
+~/holberton-AirBnB_clone$ ./console.py
 (hbnb)all MyModel
 ** class doesn't exist **
 (hbnb)show
