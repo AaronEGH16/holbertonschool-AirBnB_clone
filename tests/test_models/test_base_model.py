@@ -3,6 +3,8 @@
 this module contains all test of base_model
 """
 import unittest
+from unittest.mock import patch
+from models.engine.file_storage import FileStorage
 import uuid
 from datetime import datetime
 from models.base_model import BaseModel
@@ -16,6 +18,7 @@ class Tests_BaseModel(unittest.TestCase):
         - test str representation
         - test type returned
         - test initialize BaseModel from kwargs
+        - test save storage
     """
     def test_unique_objects(self):
         obj1 = BaseModel()
@@ -49,3 +52,9 @@ class Tests_BaseModel(unittest.TestCase):
             "updated_at": "2003-03-18T16:30:01.100000"
         }
         self.assertEqual(obj1.to_dict(), answer)
+
+    def test_save_storage(self):
+        obj = BaseModel()
+        with unittest.mock.patch.object(FileStorage, 'save') as mock_save:
+            obj.save()
+            mock_save.assert_called_once()
