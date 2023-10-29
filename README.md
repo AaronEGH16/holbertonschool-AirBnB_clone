@@ -39,10 +39,10 @@ Looking to learn:
 The command interpreter is used to create and manage instances of each program method (BaseModel, User, etc...)
 
 how to install?:
-´´´
+```
 $git clone https://github.com/seba17962/holbertonschool-AirBnB_clone.git
 $cd holberton-AirBnB_clone
-´´´
+```
 
 Start the command interpreter as shown below:
 ```
