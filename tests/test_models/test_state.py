@@ -4,6 +4,7 @@ import unittest
 from models.state import State
 from models.base_model import BaseModel
 
+
 class Tests_state(unittest.TestCase):
     """test:
             name its created

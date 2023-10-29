@@ -3,6 +3,7 @@
 this module contains all test of file_storage
 """
 import unittest
+from unittest.mock import patch
 import os
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -35,10 +36,12 @@ class Tests_FileStorage(unittest.TestCase):
         obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
         self.assertIsNotNone((self.storage.all())[obj_key])
 
-    def test_save(self):
-        self.storage.new(self.base_model)
-        self.storage.save()
-        obj_key = f"{self.base_model.__class__.__name__}.{self.base_model.id}"
+    def test_save_storage(self):
+        obj = BaseModel()
+        with unittest.mock.patch.object(FileStorage, 'save') as mock_save:
+            obj.save()
+            mock_save.assert_called_once()
+        obj_key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertIsNotNone((self.storage.all())[obj_key])
 
     def test_reload(self):
@@ -59,11 +62,3 @@ class Tests_FileStorage(unittest.TestCase):
         self.assertEqual(obj2.to_dict(), (all_obj[obj_key2]).to_dict())
         self.assertIsNotNone((self.storage.all())[obj_key3])
         self.assertEqual(obj3.to_dict(), (all_obj[obj_key3]).to_dict())
-
-
-    def test_save(self):
-        obj1 = BaseModel()
-        initial_updated_at = obj1.updated_at
-        obj1.save()
-        self.assertNotEqual(obj1.updated_at, initial_updated_at)
-

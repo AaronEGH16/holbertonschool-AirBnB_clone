@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Test state"""
+"""Test city"""
 import unittest
 from models.city import City
 from models.base_model import BaseModel
@@ -18,4 +18,3 @@ class Test_city(unittest.TestCase):
     def test_city_inheritance(self):
         city = City()
         self.assertTrue(isinstance(city, BaseModel))
-        
