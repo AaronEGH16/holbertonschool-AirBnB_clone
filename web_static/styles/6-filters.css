@@ -58,6 +58,7 @@
     padding-bottom: 20px;
     border: #DDDDDD solid 1px;
     border-radius: 4px;
+    z-index: 1;
 }
 
 .filters h2 {
